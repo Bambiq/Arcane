@@ -15,14 +15,16 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
         movement = movement.normalized;
+    }
 
-        //rotation
+    private void FixedUpdate()
+    {
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 0;
 
@@ -35,9 +37,4 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         rb.velocity = movement * moveSpeed;
     }
-
-    /*void FixedUpdate()
-    {
-        
-    }*/
 }
