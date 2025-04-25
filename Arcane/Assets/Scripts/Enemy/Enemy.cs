@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float health;
+    public float Hitpoints;
+    public float MaxHitpoints = 100;
+    public HealthManager Healthbar;
+
+    [SerializeField] private float damageDeal;
+
     public GameObject chasedObjcet;
     public float enemySpeed;
     public float disttanceBetween;
-
     private float distanseChase;
     
     private void Start()
     {
         chasedObjcet = GameObject.Find("Player");
+        Hitpoints = MaxHitpoints;
+        Healthbar.SetHealth(Hitpoints, MaxHitpoints);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         Chase();
     }
@@ -37,11 +43,27 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        Hitpoints -= damage;
+        Healthbar.SetHealth(Hitpoints, MaxHitpoints);
 
-        if (health <= 0f)
+        if (Hitpoints <= 0f)
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.GetComponent<PlayerHealth>().TakeDamage(damageDeal);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(this.transform.position, disttanceBetween);
     }
 }

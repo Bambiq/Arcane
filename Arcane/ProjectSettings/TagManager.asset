@@ -12,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Sword
+  - Weapon
   - Player
   - 
   - 
@@ -41,4 +41,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 231218829
+    locked: 0
+  - name: Weapon
+    uniqueID: 504405557
+    locked: 0
+  - name: Floor
+    uniqueID: 649018407
     locked: 0
