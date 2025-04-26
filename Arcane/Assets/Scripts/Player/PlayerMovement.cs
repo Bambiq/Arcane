@@ -6,34 +6,32 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
 
-    private Rigidbody2D rb;
     private Vector2 movement;
-
+    private Animator animator;
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        // Get input
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
 
-        movement = movement.normalized;
-    }
+        // Normalize to avoid faster diagonal movement
+        movement = new Vector2(moveX, moveY).normalized;
 
-    private void FixedUpdate()
-    {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 0;
+        // Move using Translate
+        transform.Translate(movement * moveSpeed * Time.deltaTime);
 
-        Vector3 objectPos = Camera.main.WorldToScreenPoint(transform.position);
-        mousePos.x = mousePos.x - objectPos.x;
-        mousePos.y = mousePos.y - objectPos.y;
-
-        float angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
-        angle -= 90;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        rb.velocity = movement * moveSpeed;
+        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+        {
+            animator.SetBool("isWalking", false);
+        }
+        else
+        {
+            animator.SetBool("isWalking", true);
+        }
     }
 }
