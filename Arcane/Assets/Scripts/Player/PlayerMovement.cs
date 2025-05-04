@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 movement;
     private Animator animator;
+    public Transform playerTransform;
+
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -15,14 +17,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Get input
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-        // Normalize to avoid faster diagonal movement
         movement = new Vector2(moveX, moveY).normalized;
 
-        // Move using Translate
         transform.Translate(movement * moveSpeed * Time.deltaTime);
 
         if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
@@ -32,6 +31,20 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             animator.SetBool("isWalking", true);
+        }
+
+        Flip(moveX);
+    }
+
+    void Flip(float moveX)
+    {
+        if (moveX > 0)
+        {
+            playerTransform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if (moveX < 0)
+        {
+            playerTransform.localRotation = Quaternion.Euler(0, 180, 0);
         }
     }
 }

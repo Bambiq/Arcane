@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
 {
     [Header ("Health")]
     public float maxHealth = 100;
-    public float currentHealth;// { get; private set; }
+    public float currentHealth;
 
     [Header("iFrames")]
     [SerializeField] private float iFramesDuration = 5f;
@@ -39,7 +39,6 @@ public class PlayerHealth : MonoBehaviour
     {
         isInvincible = true;
 
-        // opcjonalnie: miganie sprite'a
         yield return new WaitForSeconds(iFramesDuration);
 
         isInvincible = false;

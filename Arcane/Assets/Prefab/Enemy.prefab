@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9076235982676308416}
   - component: {fileID: 1742430760236380543}
   - component: {fileID: 4187399091237688315}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -269,6 +269,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4891685899303198745}
     m_Modifications:
+    - target: {fileID: 1130650417831778803, guid: c37fccef9fce78f4fbe95d19368c70a9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1133302697038222388, guid: c37fccef9fce78f4fbe95d19368c70a9, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
@@ -280,6 +284,14 @@ PrefabInstance:
     - target: {fileID: 1172029866657240772, guid: c37fccef9fce78f4fbe95d19368c70a9, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1172029866657240772, guid: c37fccef9fce78f4fbe95d19368c70a9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281970000096140750, guid: c37fccef9fce78f4fbe95d19368c70a9, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5533276357755756814, guid: c37fccef9fce78f4fbe95d19368c70a9, type: 3}
       propertyPath: m_AnchorMax.y
@@ -364,6 +376,10 @@ PrefabInstance:
     - target: {fileID: 7412224354216346729, guid: c37fccef9fce78f4fbe95d19368c70a9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139919736003043123, guid: c37fccef9fce78f4fbe95d19368c70a9, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
