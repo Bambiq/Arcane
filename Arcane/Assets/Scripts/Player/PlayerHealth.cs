@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            //player die
+            //player die()
             GetComponent<PlayerMovement>().enabled = false;
         }
     }

@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         Flip(moveX);
     }
 
-    void Flip(float moveX)
+    public void Flip(float moveX)
     {
         if (moveX > 0)
         {
