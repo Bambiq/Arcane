@@ -9,15 +9,19 @@ public class Weapon : MonoBehaviour
     public Transform bulletSpawnTransform;
     public GameObject bulletPrefab;
 
+    [Header("DetectTarget")]
+    private Transform targetedEnemy;
+    public float detectionRange = 3f;
+    public LayerMask enemyLayer;
+
     [Header("AutoShoot")]
     public float fireRate = 5f;
     public float shootCooldown;
     public bool autoFireEnabled = false;
 
+
     [Header("References")]
     public WeaponManager enemyDetector;
-
-    private Transform targetedEnemy;
     
     private void Update()
     {
@@ -29,7 +33,21 @@ public class Weapon : MonoBehaviour
     // Detect closest enemy
     void DetectTarget()
     {
-        targetedEnemy = enemyDetector.DetectClosestEnemy();
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, detectionRange, enemyLayer);
+
+        float closestDistance = Mathf.Infinity;
+        targetedEnemy = null;
+
+        foreach (Collider2D enemy in enemies)
+        {
+            float distance = Vector2.Distance(transform.position, enemy.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                targetedEnemy = enemy.transform;
+            }
+        }
+
         autoFireEnabled = targetedEnemy != null;
     }
 
@@ -62,5 +80,11 @@ public class Weapon : MonoBehaviour
             Instantiate(bulletPrefab, bulletSpawnTransform.position, transform.rotation);
             shootCooldown = 1f / fireRate;
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
 }
