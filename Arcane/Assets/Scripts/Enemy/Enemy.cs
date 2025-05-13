@@ -29,6 +29,8 @@ public class Enemy : MonoBehaviour
 
     public void Chase()
     {
+        if (!chasedObjcet) return;
+
         distanseChase = Vector2.Distance(transform.position, chasedObjcet.transform.position);
         Vector2 direction = chasedObjcet.transform.position - transform.position;
         direction.Normalize();
@@ -52,11 +54,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(damageDeal);
+            Debug.Log("Player is hit");
         }
     }
 

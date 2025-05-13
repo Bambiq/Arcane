@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public GameObject DiedScreen;
+
     [Header ("Health")]
     public float maxHealth = 100;
     public float currentHealth;
+    public GameObject Player;
 
     [Header("iFrames")]
     [SerializeField] private float iFramesDuration = 5f;
-    private bool isInvincible = false;
-
+    public bool isInvincible = false;
+    
     private void Awake()
     {
         currentHealth = maxHealth;
@@ -30,8 +34,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            //player die()
-            GetComponent<PlayerMovement>().enabled = false;
+            Die();
         }
     }
 
@@ -42,5 +45,12 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(iFramesDuration);
 
         isInvincible = false;
+    }
+
+    void Die()
+    {
+        Object.Destroy(Player);
+        GetComponent<PlayerMovement>().enabled = false;
+        DiedScreen.SetActive(true);
     }
 }

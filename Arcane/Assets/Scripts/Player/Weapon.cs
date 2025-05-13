@@ -54,16 +54,11 @@ public class Weapon : MonoBehaviour
     // Aim at that enemy
     void AimAtTarget()
     {
-        if (targetedEnemy == null)
-        {
-            transform.rotation = Quaternion.identity; //Reset rotacji po straceniu celu??
-        }
-        else
-        {
+        if (targetedEnemy == null) return;
+
             Vector2 direction = (targetedEnemy.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
-        }
     }
 
     //Shoot with cooldown
