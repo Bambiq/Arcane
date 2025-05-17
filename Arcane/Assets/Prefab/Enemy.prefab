@@ -127,7 +127,7 @@ MonoBehaviour:
   damageDeal: 1
   chasedObjcet: {fileID: 0}
   enemySpeed: 3.5
-  disttanceBetween: 4
+  disttanceBetween: 2
 --- !u!1 &5520558493824939990
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,8 +200,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 231218829
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6fa579e3309c2e14ca24341d89552683, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

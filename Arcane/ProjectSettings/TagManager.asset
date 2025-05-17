@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - WorldObjectHolder
+  - WaveSpawner
   layers:
   - Default
   - TransparentFX
@@ -43,12 +43,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
+  - name: Floor
+    uniqueID: 649018407
+    locked: 0
+  - name: Characters
     uniqueID: 231218829
     locked: 0
   - name: Weapon
     uniqueID: 504405557
-    locked: 0
-  - name: Floor
-    uniqueID: 649018407
     locked: 0

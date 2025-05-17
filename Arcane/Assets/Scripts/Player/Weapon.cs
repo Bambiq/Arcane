@@ -19,10 +19,6 @@ public class Weapon : MonoBehaviour
     public float shootCooldown;
     public bool autoFireEnabled = false;
 
-
-    [Header("References")]
-    public WeaponManager enemyDetector;
-    
     private void Update()
     {
         DetectTarget();
@@ -59,18 +55,22 @@ public class Weapon : MonoBehaviour
                 targetedEnemy = enemy.transform;
             }
         }
-
         autoFireEnabled = targetedEnemy != null;
     }
 
     // Aim at that enemy
     void AimAtTarget()
     {
-        if (targetedEnemy == null) return;
-
+        if (targetedEnemy == null)
+        {
+            transform.rotation = default;
+        }
+        else
+        {
             Vector2 direction = (targetedEnemy.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        } 
     }
 
     //Shoot with cooldown
