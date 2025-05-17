@@ -28,6 +28,18 @@ public class Weapon : MonoBehaviour
         DetectTarget();
         AimAtTarget();
         AutoShoot();
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            KillEnemys();
+        }
+    }
+
+    void KillEnemys()
+    {
+        GameObject[] gos = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject go in gos)
+            Destroy(go);
     }
 
     // Detect closest enemy
@@ -71,7 +83,6 @@ public class Weapon : MonoBehaviour
 
         if (shootCooldown <= 0f)
         {
-            Debug.Log("Strza³");
             Instantiate(bulletPrefab, bulletSpawnTransform.position, transform.rotation);
             shootCooldown = 1f / fireRate;
         }

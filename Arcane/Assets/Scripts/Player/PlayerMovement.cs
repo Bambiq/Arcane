@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("isWalking", true);
         }
-
         Flip(moveX);
     }
 

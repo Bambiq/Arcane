@@ -59,8 +59,15 @@ public class Enemy : MonoBehaviour
         if (collision.tag == "Player")
         {
             collision.GetComponent<PlayerHealth>().TakeDamage(damageDeal);
-            Debug.Log("Player is hit");
         }
+    }
+    void OnDestroy()
+    {
+        if (GameObject.FindGameObjectWithTag("WaveSpawner") != null)
+        {
+            GameObject.FindGameObjectWithTag("WaveSpawner").GetComponent<WaveSpawner>().spawnedEnemies.Remove(gameObject);
+        }
+
     }
 
     private void OnDrawGizmos()
